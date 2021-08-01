@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo do Alvo</title>
+    <link rel="jogodoAlvo" href="jogodoAlvo.js">
+</head>
+<body>
+
+    <canvas width="600" height="400" ></canvas>
+
+    <script>
+
+        var tela = document.querySelector("canvas");
+        var pincel = tela.getContext('2d');
+        pincel.fillStyle = 'lightgray';
+        pincel.fillRect(0,0,600,400);
+
+        var xAleatorio; 
+        var yAleatorio;
+
+        var raio = 10
+
+            function desenhaCircle(x,y,raio,color){
+
+                pincel.fillStyle = color;
+                pincel.beginPath();
+                pincel.arc(x, y, raio, 0, 2* Math.PI);
+                pincel.fill();
+            }
+
+            function limpaTela(){
+
+                pincel.clearRect(0,0,600,400);
+            }
+
+            function alvo(x,y){
+
+                desenhaCircle(x, y, raio+20,'red');
+                desenhaCircle(x, y, raio+10,'white');
+                desenhaCircle(x, y, raio, 'red');
+
+            }
+
+            function sorteioPosicao(maximo){
+
+                return Math.floor(Math.random()* maximo);
+            }
+            
+            function atualizaTela(){
+                limpaTela();
+                xAleatorio = sorteioPosicao(600)
+                yAleatorio = sorteioPosicao(400);
+                alvo(xAleatorio,yAleatorio);
+            }
+
+        setInterval(atualizaTela,800);
+
+            function dispara(event){
+
+                x = event.pageX - tela.offsetLeft;
+                y = event.pageY - tela.offsetTop;
+
+                if( (x > xAleatorio - raio)&&
+                    (x < xAleatorio + raio)&&
+                    (y > yAleatorio - raio)&&
+                    (y < yAleatorio + raio)){
+
+                    alert('Acertoou');
+                }
+
+            }
+
+        tela.onclick = dispara;
+
+    </script>
+
+</body>
+</html>
