@@ -331,6 +331,31 @@ body {
 	width: 23%;
 }
 
+
+.videoSobre .container{
+	display: flex;
+	flex-grow: 1;
+	text-align: center;
+}
+
+.videoSobre-sobre {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	flex-grow: 2;
+}
+
+.videoSobre-sobre-list{
+	flex-grow: 1;
+}
+
+.videoSobre-video{
+	flex-grow: 1;
+	flex-shrink: 2;
+}
+
+
+
 /*Mobile*/
 
 @media screen and (max-width:768px){
@@ -369,4 +394,17 @@ body {
 	width: 100%;
 }
 
+.cabecalhoPrincipal-nav-link-app{
+	order: -1;
+}
+
+.videoSobre .container{
+	flex-direction:column;
+}
+
+.videoSobre-video{
+	margin: 0 auto;
+}
+	
+	
 }
